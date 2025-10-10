@@ -38,9 +38,3 @@ For containers use `configs/docker.yaml`, which already maps hosts to compose/He
   ```bash
   docker-compose up -d
   ```
-
-## Flow
-
-1. Controller validates request and publishes to RabbitMQ based on `trip_type`.
-2. Worker consumes queue, computes H3 indices & distance, persists in PostgreSQL.
-3. Redis hotspots cache is refreshed so clients can query `/api/v1/hotspots`.
