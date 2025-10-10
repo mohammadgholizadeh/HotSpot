@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+  labels:
+    app: {{ .Chart.Name }}
+data:
+  config.yaml: |
+    server:
+      port: {{ .Values.service.port }}
+
+    postgres:
+      host: "{{ .Release.Name }}-postgresql"
+      port: 5432
+      user: "{{ .Values.postgresql.auth.username }}"
+      password: "{{ .Values.postgresql.auth.password }}"
+      db: "{{ .Values.postgresql.auth.database }}"
+      sslmode: "disable"
+
+    redis:
+      addr: "{{ .Release.Name }}-redis-master:6379"
+      password: ""
+      db: 0
+
+    broker:
+      url: "amqp://{{ .Values.rabbitmq.auth.username }}:{{ .Values.rabbitmq.auth.password }}@{{ .Release.Name }}-rabbitmq:5672/"
+      exchange: "rides"
+      intra_queue: "intra_city"
+      inter_queue: "inter_city"
+
+    hotspot:
+      resolution: {{ .Values.hotspot.resolution }}
+      threshold: {{ .Values.hotspot.threshold }}
+      decay_half_life_min: {{ .Values.hotspot.decayHalfLifeMin }}

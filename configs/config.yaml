@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+postgres:
+  host: localhost
+  port: 5432
+  user: postgres
+  password: 1234
+  db: user_requests
+  sslmode: disable
+
+redis:
+  addr: "localhost:6379"
+  password: ""
+  db: 0
+
+broker:
+  url: "amqp://guest:guest@localhost:5672/"
+  exchange: "rides"
+  intra_queue: "intra_city"
+  inter_queue: "inter_city"
+
+hotspot:
+  resolution: 8
+  threshold: 10
+  decay_half_life_min: 30

@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+postgres:
+  host: postgres
+  port: 5432
+  user: hotspot
+  password: hotspot123
+  db: hotspot
+  sslmode: disable
+
+redis:
+  addr: "redis:6379"
+  password: ""
+  db: 0
+
+broker:
+  url: "amqp://hotspot:hotspot123@rabbitmq:5672/"
+  exchange: "rides"
+  intra_queue: "intra_city"
+  inter_queue: "inter_city"
+
+hotspot:
+  resolution: 8
+  threshold: 10
+  decay_half_life_min: 30

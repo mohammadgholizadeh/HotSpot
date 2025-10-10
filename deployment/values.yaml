@@ -1,0 +1,47 @@
+image:
+  repository: hotspot
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+replicaCount: 1
+
+postgresql:
+  auth:
+    username: postgres
+    password: "1234"
+    database: hotspot
+  primary:
+    persistence:
+      enabled: false
+
+redis:
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+
+rabbitmq:
+  auth:
+    username: hotspot
+    password: "1234"
+  persistence:
+    enabled: false
+
+hotspot:
+  resolution: 8
+  threshold: 10
+  decayHalfLifeMin: 30
